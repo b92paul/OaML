@@ -11,7 +11,7 @@ function best_w = grad(yx, C, eps, eta)
 		gd = grad_one(w, yx, C);
 		w = w - eta * gd;
 		gd_norm = norm(gd);
-		if(mod(t_iter, 100) == 0)
+		if(mod(t_iter, 10) == 0)
 			fprintf('iter:%d, gd_norm = %f\n', t_iter, gd_norm);
 		end
 	end
