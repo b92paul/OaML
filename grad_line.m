@@ -21,11 +21,11 @@ function best_w = grad_line(yx, C, eps, eta)
 		
 		fw_k = obj_func_f(w, yx_w, C); % f(w_k)
 		iter = 0;
-		while( obj_func_fast(w_norm, gd_norm, w_gd, yx_w, yx_gd, alpha, C) > fw_k + alpha * eta_gd_norm2)
+		while( obj_func_fast(w_norm, gd_norm, w_gd, yx_w, yx_gd, alpha, C) > fw_k - alpha * eta_gd_norm2)
 			alpha = alpha * 0.5;
 			iter = iter+1;
 		end
-		if(mod(t_iter,100) == 0)
+		if(mod(t_iter,1) == 0)
 			fprintf('iter:%d, alpha iter = %d: alpha = %f, gd_norm = %f\n', t_iter, iter, alpha, gd_norm);
 		end
 		w = w - eta * alpha * gd;
