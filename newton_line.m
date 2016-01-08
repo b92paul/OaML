@@ -34,10 +34,10 @@ function best_w = newton_line(yX, C, X, eps, eta, eps_k)
 		w = w + alpha * s;
 		wTw = dot(w,w);
 		% for next step
-		f_k = obj_func_f(wTw, yXw, C);
-		fprintf('iter  %d f %f |g| %f CG   %d step_size %f\n', t_iter, f_k, gd_norm, CG_iter, alpha);
+		fprintf('iter  %d f %0.3e |g| %0.3e CG   %d step_size %0.3e\n', t_iter, f_k, gd_norm, CG_iter, alpha);
 		%fprintf('iter %d, gd_norm = %f, alpha = %f, wnorm = %f\n', t_iter, f_k, gd_norm, alpha, sqrt(wTw));
 		yXw = yX*w;
+		f_k = obj_func_f(wTw, yXw, C);
 		sigm_nyXw = 1./(1+exp(-yXw));
 		gd = w + C * transpose((transpose(sigm_nyXw-1))*yX);
 		gd_norm = norm(gd);

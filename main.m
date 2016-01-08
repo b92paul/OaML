@@ -3,9 +3,9 @@ eps = 0.01;
 eta = 0.01;
 eps_k = 0.1;
 
+tic;
 %[y, x] = libsvmread('data/heart_scale');
 %[y, x] = libsvmread('data/rcv1_test');
-tic;
 [y, x] = libsvmread('data/kddb');
 y = y*2-1;
 toc;
