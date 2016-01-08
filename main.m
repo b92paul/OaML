@@ -4,9 +4,11 @@ eta = 0.01;
 eps_k = 0.1;
 
 %[y, x] = libsvmread('data/heart_scale');
-[y, x] = libsvmread('data/rcv1_test');
-%[y, x] = libsvmread('data/kddb_test_2');
-%y = y*2-1;
+%[y, x] = libsvmread('data/rcv1_test');
+tic;
+[y, x] = libsvmread('data/kddb');
+y = y*2-1;
+toc;
 fprintf('read file done.\n');
 y_diag = spdiags(y ,0,size(y,1),size(y,1));
 yx = y_diag * x;
