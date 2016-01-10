@@ -10,16 +10,16 @@ function best_w = grad_line(yX, C, eps, eta)
 	f_k = obj_func_f(wTw, yXw, C);
 	while(gd_norm > eps * gd_0_norm)
 		
-		s = -gd;
+		%s = -gd;
 		CG_iter = 0;
 		% line search
 		alpha = 1.0;
-		eta_gdTs = eta * dot(gd,s);
+		sTs = dot(gd,gd);
+		eta_gdTs = -eta * sTs;
 		
-		sTs = dot(s,s);
-		wTs = dot(w,s);
+		wTs = -dot(w,gd);
 		
-		ayXs = yX*s;
+		ayXs = -(yX*gd);
 
 		while(1)
 			f_was = obj_func_fast(wTw, wTs, sTs, yXw + ayXs, alpha, C);
@@ -32,7 +32,7 @@ function best_w = grad_line(yX, C, eps, eta)
 		end
 		
 		% update w
-		w = w + alpha * s;
+		w = w - alpha * gd;
 		wTw = dot(w,w);
 		% for next step
 		fprintf('iter  %d f %0.3e |g| %0.3e CG   %d step_size %0.3e\n', t_iter, f_k, gd_norm, CG_iter, alpha);
